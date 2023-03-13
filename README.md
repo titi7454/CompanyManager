@@ -18,6 +18,6 @@ The last step is to run the application by writing "npm start"
 
 ## Technologies and libraries used ->
 
-Javascript -> React
-CSS -> Tailwind
-HTML -> Inside of React
+1. Javascript -> React
+2. CSS -> Tailwind
+3. HTML -> Inside of React
