@@ -98,7 +98,6 @@ const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
               </div>
               <div className="flex flex-col items-center justify-center">
                 {numberOfEmployeesWorking.map((num, id) => {
-                  console.log(numberOfEmployeesWorking);
                   for (let i = 0; i < num; i++) {
                     return (
                       <select
