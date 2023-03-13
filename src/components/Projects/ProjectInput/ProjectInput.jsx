@@ -1,4 +1,15 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
+const notifySuccess = () => toast.success("Project successfully created");
+const notifyError = () => toast.error("Something is missing");
+const notifyEmployeeSuccess = () =>
+  toast.success("Employee successfully added to the project");
+const notifyEmployeeError = () =>
+  toast.success("Employee successfully removed from the project");
+const notifyEmployeeErrorAdd = () =>
+  toast.error("There aren't any more employess to add");
+const notifyEmployeeErrorRemove = () =>
+  toast.error("You can't remove the last employee");
 
 const ProjectInput = ({ addProject, employeeNames }) => {
   const fullName = employeeNames;
@@ -9,24 +20,29 @@ const ProjectInput = ({ addProject, employeeNames }) => {
   const [counter, setCounter] = useState(2);
 
   const handleAddProject = () => {
-    addProject(name, employeesWorking, dueDate);
-    setName("");
-    setEmployeesWorking([]);
-    setDueDate("");
+    if (name !== "" && employeesWorking !== "" && dueDate !== "") {
+      addProject(name, employeesWorking, dueDate);
+      setName("");
+      setEmployeesWorking([]);
+      setDueDate("");
+      notifySuccess();
+    } else notifyError();
   };
 
   const handleAddEmplyee = () => {
     if (fullName.length > numberOfEmployeesWorking.length) {
       setCounter((prev) => prev + 1);
       setNumberOfEmployeesWorking(() => [...numberOfEmployeesWorking, counter]);
-    }
+      notifyEmployeeSuccess();
+    } else notifyEmployeeErrorAdd();
   };
 
   const handleRemoveEmplyee = () => {
     if (counter > 2) {
       setCounter((prev) => prev - 1);
       numberOfEmployeesWorking.pop();
-    }
+      notifyEmployeeError();
+    } else notifyEmployeeErrorRemove();
   };
 
   return (
@@ -41,8 +57,11 @@ const ProjectInput = ({ addProject, employeeNames }) => {
       {numberOfEmployeesWorking.map((num, id) => {
         for (let i = 0; i < num; i++) {
           return (
-            <select key={id}
-              onChange={(e) => setEmployeesWorking([...employeesWorking,e.target.value])}
+            <select
+              key={id}
+              onChange={(e) =>
+                setEmployeesWorking([...employeesWorking, e.target.value])
+              }
               className="focus:shadow-lg font-Inter focus:shadow-blue-800 pl-12 w-full py-4 my-2 bg-gray-700 rounded-xl outline-none transition-all duration-300 ease-in-out"
             >
               {fullName.map((name, id) => (

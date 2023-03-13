@@ -1,4 +1,7 @@
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+const notifySuccess = () => toast.success("Task successfully added");
+const notifyError = () => toast.error("Something is missing");
 
 const TodoInput = ({ addTodo, employeeNames }) => {
   const fullName = employeeNames;
@@ -6,12 +9,21 @@ const TodoInput = ({ addTodo, employeeNames }) => {
   const [description, setDescription] = useState("");
   const [assignee, setAssignee] = useState(fullName[0]);
   const [dueDate, setDueDate] = useState("");
+
   const handleAddTodo = () => {
-    addTodo(title, description, assignee, dueDate);
-    setTitle("");
-    setDescription("");
-    setAssignee(assignee);
-    setDueDate("");
+    if (
+      fullName !== "" &&
+      description !== "" &&
+      assignee !== "" &&
+      dueDate !== ""
+    ) {
+      addTodo(title, description, assignee, dueDate);
+      setTitle("");
+      setDescription("");
+      setAssignee(assignee);
+      setDueDate("");
+      notifySuccess();
+    } else notifyError();
   };
 
   return (
@@ -35,8 +47,10 @@ const TodoInput = ({ addTodo, employeeNames }) => {
         onChange={(e) => setAssignee(e.target.value)}
         className="focus:shadow-lg font-Inter focus:shadow-blue-800 pl-12 w-full py-4 my-2 bg-gray-700 rounded-xl outline-none transition-all duration-300 ease-in-out"
       >
-        {fullName.map((name,id) => (
-          <option key={id} value={name}>{name}</option>
+        {fullName.map((name, id) => (
+          <option key={id} value={name}>
+            {name}
+          </option>
         ))}
       </select>
       <input
@@ -52,6 +66,7 @@ const TodoInput = ({ addTodo, employeeNames }) => {
       >
         Submit
       </button>
+      <Toaster />
     </div>
   );
 };

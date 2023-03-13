@@ -1,4 +1,14 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
+const notifyEmployeeSuccess = () =>
+  toast.success("Employee successfully added to the project");
+const notifyEmployeeError = () =>
+  toast.success("Employee successfully removed from the project");
+const notifyEmployeeErrorAdd = () =>
+  toast.error("There aren't any more employess to add");
+const notifyEmployeeErrorRemove = () =>
+  toast.error("You can't remove the last employee");
+const notifyRemoveSuccess = () => toast.success("Project successfully removed");
 
 const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
   const { id, name, employeesWorking, dueDate, tasksFinished } = project;
@@ -31,7 +41,8 @@ const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
     if (fullName.length > numberOfEmployeesWorking.length) {
       setCounter((prev) => prev + 1);
       setNumberOfEmployeesWorking(() => [...numberOfEmployeesWorking, counter]);
-    }
+      notifyEmployeeSuccess();
+    } else notifyEmployeeErrorAdd();
   };
 
   const handleRemoveEmplyee = () => {
@@ -39,7 +50,8 @@ const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
       setCounter((prev) => prev - 1);
       numberOfEmployeesWorking.pop();
       newEmployeesWorking.pop();
-    }
+      notifyEmployeeError();
+    } else notifyEmployeeErrorRemove();
   };
 
   const handleSelect = (e) => {
@@ -123,22 +135,23 @@ const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
           )}
         </div>
 
-          {!isEditing ? (<></>) : (
-
-            <div className="flex justify-center gap-2 my-1">
-                <button
-                  className="w-1/5 rounded-lg bg-gray-600"
-                  onClick={handleAddEmplyee}
-                  >
-                  Add employee
-                </button>
-                <button
-                  className="w-1/4 rounded-lg bg-gray-600"
-                  onClick={handleRemoveEmplyee}
-                  >
-                  Remove employee
-                </button>
-              </div>
+        {!isEditing ? (
+          <></>
+        ) : (
+          <div className="flex justify-center gap-2 my-1">
+            <button
+              className="w-1/5 rounded-lg bg-gray-600"
+              onClick={handleAddEmplyee}
+            >
+              Add employee
+            </button>
+            <button
+              className="w-1/4 rounded-lg bg-gray-600"
+              onClick={handleRemoveEmplyee}
+            >
+              Remove employee
+            </button>
+          </div>
         )}
       </div>
 
@@ -146,7 +159,10 @@ const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
         <button onClick={handleEdit}>Edit</button>
         <div className="flex justify-center items-center pt-1">
           <img
-            onClick={() => handleDelete(id)}
+            onClick={() => {
+              handleDelete(id);
+              notifyRemoveSuccess();
+            }}
             className="h-5 w-5 cursor-pointer transition-all duration-300 ease-in"
             src="/close-icon.svg"
             alt="Close Icon"

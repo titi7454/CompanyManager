@@ -1,4 +1,7 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
+const notifySuccess = () => toast.success("Employee successfully added");
+const notifyError = () => toast.error("Something is missing");
 
 const EmployeeInput = ({ addEmployee }) => {
   const [fullName, setFullName] = useState("");
@@ -8,14 +11,21 @@ const EmployeeInput = ({ addEmployee }) => {
   const [salary, setSalary] = useState("");
 
   const handleAddEmployee = () => {
-    console.log(birthday)
-    console.log(salary)
-    addEmployee(fullName, email, phone, birthday, salary);
-    setFullName("");
-    setEmail("");
-    setPhone("");
-    setBirthday("");
-    setSalary("");
+    if (
+      fullName !== "" &&
+      email !== "" &&
+      phone !== "" &&
+      birthday !== "" &&
+      salary !== ""
+    ) {
+      addEmployee(fullName, email, phone, birthday, salary);
+      setFullName("");
+      setEmail("");
+      setPhone("");
+      setBirthday("");
+      setSalary("");
+      notifySuccess();
+    } else notifyError();
   };
 
   return (

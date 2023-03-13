@@ -1,4 +1,6 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
+const notifyRemoveSuccess = () => toast.success("Task successfully removed");
 
 const Todo = ({
   todo,
@@ -125,7 +127,10 @@ const Todo = ({
         <button onClick={handleEdit}>Edit</button>
         <div className="flex justify-center items-center pt-1">
           <img
-            onClick={() => handleDelete(id)}
+            onClick={() => {
+              handleDelete(id);
+              notifyRemoveSuccess();
+            }}
             className="h-5 w-5 cursor-pointer transition-all duration-300 ease-in"
             src="/close-icon.svg"
             alt="Close Icon"
