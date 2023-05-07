@@ -15,7 +15,7 @@ const TodoList = ({
 }) => {
   return (
     <div className="flex flex-col mt-7 rounded-lg overflow-hidden shadow-2xl">
-      <div className="bg-stone-900 grid grid-cols-[5%,16.6%,16.6%,16.6%,16.6%,16.6%,12%]">
+      <div className="bg-stone-900 hidden lg:grid grid-cols-[5%,16.6%,16.6%,16.6%,16.6%,16.6%,12%]">
         <div></div>
         <div className="flex justify-center items-center">Title</div>
         <div className="flex justify-center items-center">Description</div>

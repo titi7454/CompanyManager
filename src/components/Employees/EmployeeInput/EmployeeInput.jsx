@@ -66,7 +66,7 @@ const EmployeeInput = ({ addEmployee }) => {
         placeholder="Salary"
       />
       <button
-        className="w-1/12 mx-auto mt-2 py-1 text-xl rounded-lg bg-gray-600"
+        className="lg:w-1/12 mx-auto mt-2 py-1 text-xl rounded-lg bg-gray-600"
         onClick={handleAddEmployee}
       >
         Submit

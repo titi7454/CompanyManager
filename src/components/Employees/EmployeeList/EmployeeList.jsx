@@ -14,7 +14,7 @@ const EmployeeList = ({
 }) => {
   return (
     <div className="flex flex-col mt-7 rounded-lg overflow-hidden shadow-2xl">
-      <div className="bg-stone-900 grid grid-cols-[17.6%,19.5%,14.6%,14.6%,10%,12.4%,11.3%]">
+      <div className="bg-stone-900 hidden lg:grid grid-cols-[17.6%,19.5%,14.6%,14.6%,10%,12.4%,11.3%]">
         <div className="flex justify-center items-center">Full name</div>
         <div className="flex justify-center items-center">E-mail</div>
         <div className="flex justify-center items-center">Phone</div>

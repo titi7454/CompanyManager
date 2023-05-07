@@ -5,7 +5,7 @@ const TasksLeaderboardList = ({
 }) => {
   return (
     <div className="flex flex-col mt-7 rounded-lg overflow-hidden shadow-2xl">
-      <div className="bg-stone-900 grid grid-cols-[18.6%,20%,21.5%,14%,13%,10%]">
+      <div className="bg-stone-900 hidden lg:grid grid-cols-[18.6%,20%,21.5%,14%,13%,10%]">
         <div className="flex justify-center items-center">Full name</div>
         <div className="flex justify-center items-center">E-mail</div>
         <div className="flex justify-center items-center">Phone</div>

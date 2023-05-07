@@ -81,21 +81,21 @@ const ProjectInput = ({ addProject, employeeNames }) => {
         onChange={(e) => setDueDate(e.target.value)}
         placeholder="Due date"
       />
-      <div className="flex justify-center gap-1">
+      <div className="grid lg:flex justify-center gap-1">
         <button
-          className="w-1/6 mt-2 py-1 text-xl rounded-lg bg-gray-600"
+          className="lg:w-1/6 mt-2 py-1 text-xl rounded-lg bg-gray-600"
           onClick={handleAddEmplyee}
         >
           Add employee
         </button>
         <button
-          className="w-1/5 mt-2 py-1 text-xl rounded-lg bg-gray-600"
+          className="lg:w-1/5 mt-2 py-1 text-xl rounded-lg bg-gray-600"
           onClick={handleRemoveEmplyee}
         >
           Remove employee
         </button>
         <button
-          className="w-1/12 mt-2 py-1 text-xl rounded-lg bg-gray-600"
+          className="lg:w-1/12 mt-2 py-1 text-xl rounded-lg bg-gray-600"
           onClick={handleAddProject}
         >
           Submit

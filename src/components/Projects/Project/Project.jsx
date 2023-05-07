@@ -63,40 +63,54 @@ const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
   };
 
   return (
-    <div className="grid grid-cols-[90%,10%] p-4 bg-gray-700 border-b border-solid border-gray-600">
+    <div className="grid grid-rows-[90%,10%] lg:grid-cols-[90%,10%] p-4 bg-gray-700 border-b border-solid border-gray-600">
       <div>
-        <div className="grid grid-cols-[18%,33.5%,18%,30.5%] items-center">
+        <div className="grid lg:grid-cols-[18%,33.5%,18%,30.5%] items-center gap-2 lg:gap-0">
           {!isEditing ? (
             <>
-              <div className="flex items-center text-center justify-center">
-                {name}
+              <div className="flex flex-col gap-2 items-center text-center justify-center">
+                <div className="lg:hidden w-full bg-stone-900">
+                  Project name:
+                </div>
+                <div className="text-center">{name}</div>
               </div>
-              <div className="grid items-center text-center justify-center">
-                {employeesWorking.map((employeeWorking, id) => {
-                  return (
-                    <div key={id}>
-                      <div>{employeeWorking}</div>
-                    </div>
-                  );
-                })}
+              <div className="flex flex-col gap-2 items-center text-center lg:grid justify-center">
+                <div className="lg:hidden w-full bg-stone-900">Employees:</div>
+                <div>
+                  {employeesWorking.map((employeeWorking, id) => {
+                    return (
+                      <div key={id}>
+                        <div className="text-center">{employeeWorking}</div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              <div className="flex items-center text-center justify-center">
-                {dueDate}
+              <div className="flex flex-col gap-2 items-center text-center justify-center">
+                <div className="lg:hidden w-full bg-stone-900">Due date:</div>
+                <div className="text-center">{dueDate}</div>
               </div>
-              <div className="flex items-center text-center justify-center">
-                {tasksFinished}
+              <div className="flex flex-col gap-2 items-center text-center justify-center">
+                <div className="lg:hidden w-full bg-stone-900">
+                  Tasks finished:
+                </div>
+                <div className="text-center">{tasksFinished}</div>
               </div>
             </>
           ) : (
             <>
-              <div className="flex justify-center">
+              <div className="flex flex-col gap-2 items-center text-center justify-center">
+                <div className="lg:hidden w-full bg-stone-900">
+                  Project name:
+                </div>
                 <input
-                  className="bg-gray-800 ml-3 mb-2 w-full"
+                  className="bg-gray-800 ml-3 lg:ml-2 mb-2 lg:w-full"
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                 />
               </div>
-              <div className="flex flex-col items-center justify-center">
+              <div className="flex flex-col gap-2 items-center text-center justify-center">
+                <div className="lg:hidden w-full bg-stone-900">Employees:</div>
                 {numberOfEmployeesWorking.map((num, id) => {
                   for (let i = 0; i < num; i++) {
                     return (
@@ -116,14 +130,18 @@ const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
                   return 0;
                 })}
               </div>
-              <div className="flex justify-center">
+              <div className="flex flex-col gap-2 items-center text-center justify-center">
+                <div className="lg:hidden w-full bg-stone-900">Due date:</div>
                 <input
-                  className="bg-gray-800 ml-3 mb-2 w-full"
+                  className="bg-gray-800 ml-3 mb-2 lg:w-full"
                   value={newDueDate}
                   onChange={(e) => setNewDueDate(e.target.value)}
                 />
               </div>
-              <div className="flex justify-center">
+              <div className="flex flex-col gap-2 items-center text-center justify-center">
+                <div className="lg:hidden w-full bg-stone-900">
+                  Tasks finished:
+                </div>
                 <input
                   className="bg-gray-800 ml-3 mb-2 w-2/12"
                   value={tasksFinished}
@@ -137,15 +155,15 @@ const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
         {!isEditing ? (
           <></>
         ) : (
-          <div className="flex justify-center gap-2 my-1">
+          <div className="grid lg:flex justify-center gap-2 my-1">
             <button
-              className="w-1/5 rounded-lg bg-gray-600"
+              className="lg:w-1/5 rounded-lg bg-gray-600"
               onClick={handleAddEmplyee}
             >
               Add employee
             </button>
             <button
-              className="w-1/4 rounded-lg bg-gray-600"
+              className="lg:w-1/4 rounded-lg bg-gray-600"
               onClick={handleRemoveEmplyee}
             >
               Remove employee
@@ -154,8 +172,15 @@ const Project = ({ project, handleDelete, handleUpdate, employeeNames }) => {
         )}
       </div>
 
-      <div className="flex justify-end gap-3">
-        <button onClick={handleEdit}>Edit</button>
+      <div className="flex justify-center lg:justify-end gap-3 mt-2 lg:mt-0">
+        <div className="flex justify-center items-center pt-1">
+          <img
+            src="/edit-icon.svg"
+            alt="Edit Icon"
+            className="h-5 w-5 cursor-pointer transition-all duration-300 ease-in"
+            onClick={handleEdit}
+          />
+        </div>
         <div className="flex justify-center items-center pt-1">
           <img
             onClick={() => {
