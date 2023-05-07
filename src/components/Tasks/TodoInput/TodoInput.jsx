@@ -61,7 +61,7 @@ const TodoInput = ({ addTodo, employeeNames }) => {
         placeholder="Due date"
       />
       <button
-        className="lg:w-1/12 mx-auto mt-2 py-1 text-xl rounded-lg bg-gray-600"
+        className="w-1/3 lg:w-[13%] mx-auto mt-2 py-1 text-xl rounded-lg bg-gray-600"
         onClick={handleAddTodo}
       >
         Submit
